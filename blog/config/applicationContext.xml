@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tool="http://www.springframework.org/schema/tool"
+	xmlns:http-conf = "http://cxf.apache.org/transports/http/configuration" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.1.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
+	
+	<!-- 这个是为了让系统识别相应的bean -->
+	<context:annotation-config/>
+	<!-- 查找使用构造型（stereotype）注解所标注的类，如@Component(组件)，@Service（服务），@Controller（控制器），@Repository（数据仓库） -->
+	<context:component-scan base-package="com.jp"/>
+	<!-- 配置数据源(此处根据实际情况配置) -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/blog"/>
+		<property name="username" value="blog"/>
+		<property name="password" value="123456789"/>
+	</bean>
+	
+	<!-- 整合的第三步: 配置sqlSessionFactory beanid-->
+	<bean id="sqlSessionFactory"
+			 class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/><!--数据源-->
+		<property name="configLocation" value="classpath:myBatis-config.xml"></property>
+	</bean>
+	
+	<!-- 整合的第四步: 指定映射器扫描MapperScannerConfigurer类
+	 basePackage指定要扫描的包com.jp.mapper
+	此com.jp.mapper包及其子包之下的映射器接口 都会被搜索到 
+	如果运行时搜索到后,会自动创建一个实现了该接口的代理类,并且加上
+	注解,可以注入到service层的UserInfoMapper的属性中
+	-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+			<property name="basePackage"  value="com.jp.*.mapper"></property>
+	</bean>
+	
+	
+	<!-- 整合的第五步: 配置transactionManager 
+	事务管理 beanid
+	区别:hibernate事务管理注入的是sessionFactory
+	mybatis注入的是数据源
+	-->
+	<bean id="transactionManager"	
+			class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+			<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	
+	<!--tx:annotation-driven transaction-manager="transactionManager"-->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		  <tx:attributes>
+		  		<tx:method name="add*" propagation="REQUIRED"/>
+				<tx:method name="del*" propagation="REQUIRED"/>
+				<tx:method name="update*" propagation="REQUIRED"/>
+				<tx:method name="do*" propagation="REQUIRED"/>
+				<tx:method name="login*" propagation="REQUIRED"/>
+				<tx:method name="*" propagation="SUPPORTS" read-only="true"/>
+		  </tx:attributes>
+	</tx:advice>
+	
+	<!-- 解释一下这几个*号，第一个表示任意返回值，第二个表示任意Class，第三个表示任意方法，括号内点表示参数可以为0或者任意个 -->
+	<aop:config>
+			<aop:pointcut  
+					expression="execution(* com.jp.*.service.*(..))" 
+					id="pointcut"/>
+			<aop:advisor advice-ref="txAdvice" 
+					 pointcut-ref="pointcut" />		
+	</aop:config>
+	
+	
+	
+	
+	
+</beans>
