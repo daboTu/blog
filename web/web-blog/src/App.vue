@@ -14,9 +14,6 @@ export default {
 
 <style>
   @import 'assets/public.css';
-  body{
-    background-color: #f5e9d3;
-  }
   #app{
       background-image: url(./assets/9k=.jpg);
       background-repeat: no-repeat;
