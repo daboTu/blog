@@ -1,0 +1,1 @@
+alter table blog_user add COLUMN email varchar(30);
