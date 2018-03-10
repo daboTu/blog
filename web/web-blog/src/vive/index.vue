@@ -10,7 +10,7 @@
             <p> 学习笔记</p>
             <DropdownMenu slot="list">
                 <DropdownItem>管理笔记</DropdownItem>
-                <DropdownItem>发布笔记</DropdownItem> 
+                <DropdownItem><router-link to="/study" class='childLink'>发布笔记</router-link></DropdownItem> 
             </DropdownMenu>
         </Dropdown>
        </li>  
@@ -19,7 +19,7 @@
             <p> 分享文章</p>
             <DropdownMenu slot="list">
                 <DropdownItem>管理文章</DropdownItem>
-                <DropdownItem>发布文章</DropdownItem> 
+                <DropdownItem><router-link to="/article" class='childLink'>发布文章</router-link></DropdownItem> 
             </DropdownMenu>
         </Dropdown>
        </li>
@@ -28,8 +28,8 @@
           <Dropdown>
             <p> 心情随笔</p>
             <DropdownMenu slot="list">
-                <DropdownItem>管理心情</DropdownItem>
-                <DropdownItem>发布心情</DropdownItem> 
+                <DropdownItem><router-link to="/adminMood" class='childLink'>管理心情</router-link></DropdownItem>
+                <DropdownItem><router-link to="/moodRelease" class='childLink'>发布心情</router-link></DropdownItem> 
             </DropdownMenu>
           </Dropdown>
        </li>
@@ -58,10 +58,15 @@
 export default {
   data() {
     return {
-      ind:0
+      ind: 1
     };
   },
-  created() {}
+  created() {
+    console.log(1111);
+    window.screenWidth = document.body.clientWidth;
+    this.screenWidth = window.screenWidth;
+    console.log(document.documentElement.clientHeight);
+  }
 };
 </script>
 <style>
@@ -99,6 +104,9 @@ export default {
   color: #fff;
   display: block;
 }
+.childLink {
+  color: #4d4d4d;
+}
 .nev li:hover {
   background: rgba(171, 38, 73, 0.5);
 }
@@ -118,7 +126,7 @@ li .list {
   width: 100%;
   /* background: rgba(171, 38, 73, 0.5); */
 }
-.b{
+.b {
   background: rgba(171, 38, 73, 0.5);
 }
 </style>
