@@ -8,7 +8,7 @@
         <Input v-model="pwd" placeholder="登录密码" style="width: 300px" />        
       </div>
       <div class="top">
-        <Button type="primary" size="large">登录</Button> <span class="goRegister">没有账号？去注册...</span> 
+        <Button type="primary" size="large" @click="signIn">登录</Button> <span class="goRegister">没有账号？去注册...</span> 
       </div>
     </div>
   </div>
@@ -32,6 +32,11 @@ export default {
     }).then(r=>{
       console.log(r)
     });
+  },
+  methods:{
+    signIn(){
+      this.$router.push({path:'/study'})
+    }
   }
 };
 </script>

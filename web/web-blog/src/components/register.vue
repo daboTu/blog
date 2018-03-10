@@ -44,21 +44,21 @@ export default {
     }
   },
   methods:{
-    register(){
-      console.log(1)
-      this.$ajax({
-        url:'register.do',
-        method:'post',
-        data:{
-          userName:'one',
-          passWord:'123',
-          sex:'0',
-          isAdmin:'n'
-        }
-      }).then(r=>{
-        console.log(r)
-      })
-    }
+    // register(){
+    //   console.log(1)
+    //   this.$ajax({
+    //     url:'register.do',
+    //     method:'post',
+    //     data:{
+    //       userName:this.user,
+    //       passWord:this.pwd,
+    //       sex:this.sex,
+    //       isAdmin:'n'
+    //     }
+    //   }).then(r=>{
+    //     console.log(r)
+    //   })
+    // }
   }
 }
 </script>

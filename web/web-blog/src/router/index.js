@@ -5,7 +5,10 @@ import aboutBlog from '../vive/aboutBlog/index.vue';
 import notice from '../vive/notice/index.vue';
 import motto from '../vive/motto/index.vue';
 import link from '../vive/link/index.vue';
-import study from '../vive/pub/study.vue'
+import article from '../vive/article/index.vue'
+import study from '../vive/study/index.vue'
+import moodRelease from '../vive/mood/release.vue'
+import adminMood from '../vive/mood/adminMood.vue'
 export default [
     {
       path: '/',
@@ -32,11 +35,35 @@ export default [
           }
         },
         {
+          path:'/moodRelease',
+          name:'moodRelease',
+          component:moodRelease,
+          meta:{
+            title:'你的心情'
+          }
+        },
+        {
+          path:'/adminMood',
+          name:'adminMood',
+          component:adminMood,
+          meta:{
+            title:'管理你的心情'
+          }
+        },
+        {
+          path:'/article',
+          name:'article',
+          component:article,
+          meta:{
+            title:'发布文章'
+          }
+        },
+        {
           path:'/study',
           name:'study',
           component:study,
           meta:{
-            title:'发布信息'
+            title:'学习笔记'
           }
         },
         {
