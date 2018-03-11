@@ -3,7 +3,10 @@
       <h1>管理你的心情</h1>
       <div class="moodBox" v-for='inx in 15'>
           <div class="content">
-            <p class="time"><Icon type="clock"></Icon> 2018-03-09</p>
+            <div class="time">
+              <p class="text-left"><Icon type="clock"></Icon> 2018-03-09 </p>
+              <p><span class="del">删除</span>&nbsp;&nbsp; <span>公开</span>&nbsp;&nbsp; <span>不公开</span> </p> 
+            </div>
             <p class="cont">
                 时光如水，流淌而过。转眼间邻居家看着我长大的姐姐要举行婚礼了，回首那些年无忧无虑的时光，曾记否，那个下午我不小心在你家睡着了
                 ，醒来后你说看我睡得香，不忍叫醒我，于是便由着我在你榻上睡去，一睡就是一个下午；还有那些快乐的周末，我们偷偷去山上摘果......
@@ -47,6 +50,19 @@ export default {
   .time {
     line-height: 45px;
     color: #999;
+    display: flex;
+    .text-left {
+      text-align: left;
+    }
+    p {
+      flex: 1;
+      font-size: 14px;
+      text-align: right;
+      span {
+        color: #ce7400;
+        cursor: pointer;
+      }
+    }
   }
   .cont {
     line-height: 18px;
