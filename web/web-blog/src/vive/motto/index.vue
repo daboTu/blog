@@ -22,5 +22,5 @@ export default {
 };
 </script>
 <style scoped>
-    @import '../aboutBlog/index.css'
+    @import '../aboutBlog/index.css';
 </style>

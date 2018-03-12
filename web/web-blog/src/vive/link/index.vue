@@ -19,8 +19,17 @@
 </template>
 <script>
 export default {
-  name: "",
-  www: ""
+    data(){
+        return{
+            name:'',
+            www:''
+        }
+    },
+    methods:{
+        handleClose(){
+            
+        }
+    }
 };
 </script>
 <style scoped>

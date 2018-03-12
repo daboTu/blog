@@ -26,7 +26,7 @@
         <Input v-model="email" placeholder="email" type="email" style="width: 300px" />        
       </div>
       <div class="top">
-        <Button type="primary" size="large" @click="register">立即注册</Button> <span class="goRegister">已有账号！去登录</span> 
+        <Button type="primary" size="large" @click="register">立即注册</Button> <span class="goRegister"><router-link to='/#'> 有账号！去登录</router-link></span> 
       </div>
     </div>
   </div>

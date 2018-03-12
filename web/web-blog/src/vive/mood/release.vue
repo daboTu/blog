@@ -1,7 +1,12 @@
 <template>
   <div class="blog">
       <div class="about">
-          心情随笔
+          <p>
+              心情随笔
+          </p>
+          <p>
+              <Checkbox :checked.sync="pubopen">不公开</Checkbox>
+          </p>
       </div>
       <div class="from">
           <Input v-model="mood" type="textarea" :rows="4" placeholder="心是任何想法都能产生的源泉..."/>
@@ -16,7 +21,8 @@
 export default {
   data() {
     return {
-      mood: ""
+      mood: "",
+      pubopen:false
     };
   }
 };

@@ -8,8 +8,19 @@
     background-color: rgba(255,255,255,0.6);
     padding-left: 24px;
     border-bottom: 1px solid #eee;
+    padding-right:24px; 
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    display: flex;
+}
+.box .title p{
+    flex: 1;
+}
+.box .title p:last-child{
+    text-align: right;
+}
+.box .title p:last-child span{
+    cursor: pointer;
 }
 .contBox{
     background-color: rgba(255,255,255,0.6);
@@ -22,4 +33,23 @@
     line-height: 70px;
     padding: 0 24px;
     z-index: 9999
+}
+.img{
+    display:flex;
+    padding: 12px 24px;
+    font-size: 14px;
+}
+.img .im{
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+    position: relative;
+    border: 1px dashed #e0e0e0;
+}
+.img .im img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    transform: translate(-50%,-50%);
 }

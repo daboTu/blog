@@ -69,11 +69,7 @@ export default {
   }
 };
 </script>
-<style>
-
-</style>
-
-<style scoped>
+<style scoped lang='less'>
 .info {
   max-width: 1220px;
   min-width: 1000px;
@@ -99,6 +95,9 @@ export default {
   color: #fff;
   transition: all 0.5s;
   position: relative;
+  p{
+    width: 100%;
+  }
 }
 .link {
   color: #fff;

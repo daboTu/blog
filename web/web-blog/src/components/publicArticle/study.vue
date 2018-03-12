@@ -1,7 +1,15 @@
 <template>
   <div>
       <div class="box">
-          <p class="title">发布文章</p>
+          <div class="title">
+              <p> 发布文章</p> 
+              <p>
+                 <span>
+                    <Checkbox :checked.sync="pubopen">不公开</Checkbox>
+                 </span> 
+                 <span>完成</span>
+              </p>
+          </div>
           <div class="contBox">
               <div class="tit">
                   <div class="titBox">
@@ -14,6 +22,12 @@
                         <Option v-for="item in 3"  :value="item" >item</Option>
                       </Select>
                   </div>
+              </div>
+              <div class="img">
+                <p class="ti ">上传展示图片：</p>
+                <p class="im">
+                    <img src="../../assets/9k=.jpg" alt="">
+                </p>
               </div>
               <div>
                   <mavon-editor style=" max-height:600px" v-model="value"  :ishljs = "true" @change="vu"/>
@@ -43,6 +57,7 @@ export default {
       constellation:'',//下拉内容分类
       copyright:'', //版权声明
       prompt:'',//注明
+      pubopen:false,//是否公开
     };
   },
   created(){

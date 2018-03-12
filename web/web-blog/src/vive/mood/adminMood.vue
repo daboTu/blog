@@ -5,7 +5,7 @@
           <div class="content">
             <div class="time">
               <p class="text-left"><Icon type="clock"></Icon> 2018-03-09 </p>
-              <p><span class="del">删除</span>&nbsp;&nbsp; <span>公开</span>&nbsp;&nbsp; <span>不公开</span> </p> 
+              <p><span class="del">删除</span>&nbsp;&nbsp; <span>编辑</span>&nbsp;&nbsp; <Checkbox :checked.sync="pubopen">不公开</Checkbox> </p> 
             </div>
             <p class="cont">
                 时光如水，流淌而过。转眼间邻居家看着我长大的姐姐要举行婚礼了，回首那些年无忧无虑的时光，曾记否，那个下午我不小心在你家睡着了
@@ -19,7 +19,9 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      pubopen:false
+    };
   },
   created() {},
   methods: {}
