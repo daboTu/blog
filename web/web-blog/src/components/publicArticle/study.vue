@@ -24,10 +24,12 @@
                   </div>
               </div>
               <div class="img">
-                <p class="ti ">上传展示图片：</p>
+                <p class="tiup ">上传展示图片：</p>
                 <p class="im">
-                    <img src="../../assets/9k=.jpg" alt="">
+                    <input type="file" name="file" ref="img" class="element" accept='image/*' @change="upimg($event)">
+                    <img :src="imgvalue" alt=""/>
                 </p>
+                <span class="prompt">为了页面显示效果，请上传一张图表示展示</br>文件必须是 jpg 或 png 格式的图片。</span>
               </div>
               <div>
                   <mavon-editor style=" max-height:600px" v-model="value"  :ishljs = "true" @change="vu"/>
@@ -58,15 +60,32 @@ export default {
       copyright:'', //版权声明
       prompt:'',//注明
       pubopen:false,//是否公开
+      imgvalue:''
     };
   },
   created(){
-    console.log(this)
   },
   methods:{
       vu(){
-          console.log(this.value,111)
-      }
+        //   console.log(this.value,111)
+      },
+    upimg(e){
+        const list = this.$refs.img.files;
+        const itme = {
+            name:list[0].name,
+            size:list[0].size,
+            file:list[0]
+        }
+        this.html5Reader(list[0],itme)
+    },
+    html5Reader(file,time){
+        var self = this;
+        const reader = new FileReader();
+        reader.onload=e=>{
+            self.imgvalue=e.target.result;
+        }
+        reader.readAsDataURL(file);
+    }
   }
 };
 </script>
