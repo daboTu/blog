@@ -9,7 +9,7 @@
          <Dropdown>
             <p> 学习笔记</p>
             <DropdownMenu slot="list">
-                <DropdownItem>管理笔记</DropdownItem>
+                <DropdownItem><router-link to='/studyAdmin' class='childLink'>管理笔记</router-link></DropdownItem>
                 <DropdownItem><router-link to="/study" class='childLink'>发布笔记</router-link></DropdownItem> 
             </DropdownMenu>
         </Dropdown>
@@ -18,7 +18,7 @@
          <Dropdown>
             <p> 分享文章</p>
             <DropdownMenu slot="list">
-                <DropdownItem>管理文章</DropdownItem>
+                <DropdownItem><router-link to='/articleAdmin' class='childLink'>管理文章</router-link></DropdownItem>
                 <DropdownItem><router-link to="/article" class='childLink'>发布文章</router-link></DropdownItem> 
             </DropdownMenu>
         </Dropdown>
@@ -33,15 +33,7 @@
             </DropdownMenu>
           </Dropdown>
        </li>
-       <li class="a" :class="{b:ind==4}" @click="ind=4">
-          <Dropdown>
-            <p> 相册</p>
-            <DropdownMenu slot="list">
-                <DropdownItem>管理相册</DropdownItem>
-                <DropdownItem>发布图片</DropdownItem> 
-            </DropdownMenu>
-          </Dropdown>
-       </li>
+       <li class="a" :class="{b:ind==4}" @click="ind=4"><router-link to="/album" class='link'>相册</router-link></li>
        <li class="a" :class="{b:ind==5}" @click="ind=5"><router-link to="/aboutBlog" class='link'> 关于博主</router-link></li>
        <li class="a" :class="{b:ind==6}" @click="ind=6"><router-link to="/notice" class='link'>公告</router-link></li>
        <li class="a" :class="{b:ind==7}" @click="ind=7"><router-link to="/motto"  class='link'>座右铭</router-link></li>
@@ -62,7 +54,6 @@ export default {
     };
   },
   created() {
-    console.log(1111);
     window.screenWidth = document.body.clientWidth;
     this.screenWidth = window.screenWidth;
     console.log(document.documentElement.clientHeight);

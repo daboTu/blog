@@ -9,6 +9,9 @@ import article from '../vive/article/index.vue'
 import study from '../vive/study/index.vue'
 import moodRelease from '../vive/mood/release.vue'
 import adminMood from '../vive/mood/adminMood.vue'
+import articleAdmin from '../vive/article/admin.vue'
+import studyAdmin from '../vive/study/admin.vue'
+import album from '../vive/album/index'
 export default [
     {
       path: '/',
@@ -59,11 +62,27 @@ export default [
           }
         },
         {
+          path:'/articleAdmin',
+          name:'articleAdmin',
+          component:articleAdmin,
+            meta:{
+              title:'管理文章'
+            }
+        },
+        {
           path:'/study',
           name:'study',
           component:study,
           meta:{
             title:'学习笔记'
+          }
+        },
+        {
+          path:'/studyAdmin',
+          name:'studyAdmin',
+          component:studyAdmin,
+          meta:{
+            title:'管理你的笔记'
           }
         },
         {
@@ -88,6 +107,14 @@ export default [
           component:link,
           meta:{
             title:'管理-友情链接'
+          }
+        },
+        {
+          path:"/album",
+          name:"album",
+          component:album,
+          meta:{
+            title:'你的相册'
           }
         }
       ]
