@@ -38,6 +38,7 @@
        <li class="a" :class="{b:ind==6}" @click="ind=6"><router-link to="/notice" class='link'>公告</router-link></li>
        <li class="a" :class="{b:ind==7}" @click="ind=7"><router-link to="/motto"  class='link'>座右铭</router-link></li>
        <li class="a" :class="{b:ind==8}" @click="ind=8"><router-link to="/link"  class='link'>友情链接</router-link></li>
+       <li class="a" :class="{b:ind==9}" @click="ind=9"><router-link to="/message"  class='link'>我的留言</router-link></li>       
      </ul>   
     </div>
     <div class="info">

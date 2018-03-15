@@ -12,6 +12,7 @@ import adminMood from '../vive/mood/adminMood.vue'
 import articleAdmin from '../vive/article/admin.vue'
 import studyAdmin from '../vive/study/admin.vue'
 import album from '../vive/album/index'
+import message from '../vive/leavingMessage/index'
 export default [
     {
       path: '/',
@@ -115,6 +116,14 @@ export default [
           component:album,
           meta:{
             title:'你的相册'
+          }
+        },
+        {
+          path:'/message',
+          name:'message',
+          component:message,
+          meta:{
+            title:'给你的留言'
           }
         }
       ]

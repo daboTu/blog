@@ -34,15 +34,6 @@
         </div>
     </div>    
     </div>
-     <Modal
-        :visible.sync="modal1"
-        title="普通的Modal对话框标题"
-        @on-ok="ok"
-        @on-cancel="cancel">
-        <p>对话框内容</p>
-        <p>对话框内容</p>
-        <p>对话框内容</p>
-    </Modal>
   </div>
  
 </template>
