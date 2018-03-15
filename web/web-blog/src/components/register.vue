@@ -17,10 +17,10 @@
         </RadioGroup>     
       </div>
       <div class="top">
-        <Input v-model="pwd" placeholder="登录密码" style="width: 300px" />        
+        <Input v-model="pwd"  type="password" placeholder="登录密码" style="width: 300px" />        
       </div>
       <div class="top">
-        <Input v-model="pwds" placeholder="确认密码" style="width: 300px" />        
+        <Input v-model="pwds" type="password" placeholder="确认密码" style="width: 300px" />        
       </div>
       <div class="top">
         <Input v-model="email" placeholder="email" type="email" style="width: 300px" />        
@@ -44,21 +44,21 @@ export default {
     }
   },
   methods:{
-    // register(){
-    //   console.log(1)
-    //   this.$ajax({
-    //     url:'register.do',
-    //     method:'post',
-    //     data:{
-    //       userName:this.user,
-    //       passWord:this.pwd,
-    //       sex:this.sex,
-    //       isAdmin:'n'
-    //     }
-    //   }).then(r=>{
-    //     console.log(r)
-    //   })
-    // }
+    register(){
+      console.log(1)
+      this.$ajax({
+        url:'register.do',
+        method:'post',
+        data:{
+          userName:this.user,
+          passWord:this.pwd,
+          sex:this.sex,
+          isAdmin:'n'
+        }
+      }).then(r=>{
+        console.log(r)
+      })
+    }
   }
 }
 </script>
