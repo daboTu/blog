@@ -53,6 +53,7 @@ export default {
           userName:this.user,
           passWord:this.pwd,
           sex:this.sex,
+          email:this.email,
           isAdmin:'n'
         }
       }).then(r=>{

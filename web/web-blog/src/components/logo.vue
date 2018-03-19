@@ -22,21 +22,26 @@ export default {
       pwd: ""
     };
   },
-  created() {
-    this.$ajax({
-      url: "/api/Classify/groupMore",
-      method: "post",
-      data: {
-          goods_id :21
-      }
-    }).then(r=>{
-      console.log(r)
-    });
-  },
-  methods:{
-    signIn(){
-      this.$router.push({path:'/study'})
-    }
+  created() {},
+  methods: {
+    signIn() {
+      this.$ajax({
+        url: "/login.do",
+        method: "post",
+        data: {
+          userName: this.user,
+          passWord: this.pwd
+        }
+      }).then(r => {
+        if (r.data.code == "0") {
+          
+           this.$router.push({ path: "/study" });
+        } else if (r.data.code == "1") {
+          console.log(r.data.message);
+        }
+      });
+    },
+    login() {}
   }
 };
 </script>
