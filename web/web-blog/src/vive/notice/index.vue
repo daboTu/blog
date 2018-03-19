@@ -1,7 +1,8 @@
 <template>
   <div class="blog">
       <div class="about">
-          公告
+          公告 &nbsp;&nbsp;&nbsp;&nbsp;<span class="tie"><Input v-model="title" type="text" size="small" placeholder="标题" /></span>
+          &nbsp;&nbsp;&nbsp;&nbsp;<Checkbox :checked.sync="pubopen">不公开</Checkbox>
       </div>
       <div class="from">
           <p><Input v-model="notice" type="textarea" :rows="4" placeholder="公告..." /></p>      
@@ -16,11 +17,13 @@ export default {
   data() {
     return {
       notice: "",
+      title: "",
+      pubopen:''
     };
   },
   created() {}
 };
 </script>
 <style scoped>
-    @import '../aboutBlog/index.css';
+@import "../aboutBlog/index.css";
 </style>

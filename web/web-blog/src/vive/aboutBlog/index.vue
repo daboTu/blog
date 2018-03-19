@@ -22,7 +22,7 @@
           <p><span>其他：</span><Input v-model="outh" placeholder="其他" style="width: 300px" /></p>
           <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-            <Button type="primary">提 交</Button></p>
+            <Button type="primary" @click="updateAboutBlog">提 交</Button></p>
       </div>
   </div>
 </template>
@@ -41,9 +41,42 @@ export default {
       outh: ""
     };
   },
-  created() {}
+  created() {
+    this.$ajax({
+      url: "/getAboutBlogPo.do",
+      method: "post",
+      data: {}
+    }).then(r => {
+      this.name=r.data.name;
+      this.sex=r.data.sex;
+      this.constellation=r.data.constellatory;
+      this.Occupation=r.data.job;
+      this.lick=r.data.favorate;
+      this.outh=r.data.other;
+
+      console.log(r)
+    });
+  },
+  methods: {
+    updateAboutBlog() {
+      this.$ajax({
+        url: "/updateAboutBlog.do",
+        method: "post",
+        data: {
+          name:this.name,
+          sex:this.sex,
+          constellatory:this.constellation,
+          favorate : this.lick,
+          job:this.Occupation,
+          other:this.outh
+        }
+      }).then(r => {
+        console.log(r);
+      });
+    }
+  }
 };
 </script>
 <style scoped>
-@import './index.css';
+@import "./index.css";
 </style>
