@@ -8,13 +8,14 @@
         <Input v-model="pwd" placeholder="登录密码" style="width: 300px" />        
       </div>
       <div class="top">
-        <Button type="primary" size="large" @click="signIn">登录</Button> <span class="goRegister"><router-link to='/register'>没有账号？去注册...</router-link> </span> 
+        <Button type="primary" size="large" @click="login">登录</Button> <span class="goRegister"><router-link to='/register'>没有账号？去注册...</router-link> </span> 
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -24,7 +25,8 @@ export default {
   },
   created() {},
   methods: {
-    signIn() {
+    ...mapMutations(["SET_USERINFO"]),
+    login() {
       this.$ajax({
         url: "/login.do",
         method: "post",
@@ -34,14 +36,13 @@ export default {
         }
       }).then(r => {
         if (r.data.code == "0") {
-          
-           this.$router.push({ path: "/study" });
+          this.SET_USERINFO({info:r.data})
+          this.$router.push({ path: "/study" });
         } else if (r.data.code == "1") {
           console.log(r.data.message);
         }
       });
-    },
-    login() {}
+    }
   }
 };
 </script>

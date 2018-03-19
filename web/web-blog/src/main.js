@@ -8,6 +8,7 @@ import axios from './api/axios';
 import tit from './api/title';
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
+import store from './vuex/store.js'
 // use
 Vue.use(mavonEditor)
 Vue.prototype.$ajax = axios;
@@ -36,6 +37,7 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   components: { App },
   template: '<App/>'

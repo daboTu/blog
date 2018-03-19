@@ -7,8 +7,19 @@
 </template>
 
 <script>
+import {mapState} from "vuex"
 export default {
-  name: 'App'
+  data(){
+    return{
+      
+    }
+  },
+  created(){
+    console.log(this.userinfo)
+  },
+  computed:{
+    ...mapState(['userinfo'])
+  }
 }
 </script>
 
