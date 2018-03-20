@@ -24,14 +24,13 @@ export default {
   created() {},
   methods: {
     commit() {
-      console.log(this.pubopen)
       this.$ajax({
         url: "/addNoticePo.do",
         method: "post",
         data: {
           title: this.title,
           content:this.notice,
-          isShow:this.pubopen
+          isShow:this.pubopen?"y":"n"
         }
       }).then(r => {
         console.log(r)
