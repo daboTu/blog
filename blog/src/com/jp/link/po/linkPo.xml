@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jp.link.mapper.LinkMapper">
+	<resultMap type="com.jp.link.po.LinkPo" id="linkPo">
+		<id column="link_id" property="link_id"/>
+		<result column="linkName" property="linkName"/>
+		<result column="linkUrl" property="linkUrl"/>
+	</resultMap>
+	
+	<insert id="addLinkPo">
+		insert into blog_link (link_id,linkName,linkUrl) values(#{link_id},#{linkName},#{linkUrl})
+	</insert>
+	
+	<delete id="deleteLinkPo">
+		delete from blog_link where link_id=#{link_id}
+	</delete>
+	
+	<select id="getList" resultType="com.jp.link.po.LinkPo">
+		select link_id,linkName,linkUrl from blog_link
+	</select>
+
+</mapper>

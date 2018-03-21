@@ -8,12 +8,18 @@
 		<result column="passWord" property="passWord"/>
 		<result column="sex" property="sex"/>
 		<result column="isAdmin" property="isAdmin"/>
+		<result column="email" property="email"/>
 	</resultMap>
 	
 	<insert id="addUser">
-		insert into blog_user (userId,userName,passWord,sex,isAdmin) values (#{userId},#{userName}
-		,#{passWord},#{sex},#{isAdmin})
+		insert into blog_user (userId,userName,passWord,sex,isAdmin,email) values (#{userId},#{userName}
+		,#{passWord},#{sex},#{isAdmin},#{email})
 	</insert>
+	
+	
+	<select id="getUserByUserNameAndPwd" resultMap="userPo">
+		select userId ,userName ,passWord ,sex ,isAdmin ,email from blog_user where userName=#{userName} and passWord=#{passWord}
+	</select>
 
 
 </mapper>

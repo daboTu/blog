@@ -24,6 +24,12 @@ public class UserPo {
 	private String sex;//性别，值为0，1,0代表为女，1代表为男
 	
 	private String isAdmin;//是否是管理员，值y，n
+	
+	private String email;//邮箱
+	
+	private String code;//标记登陆是否成功
+	
+	private String message;//标记返回信息
 
 	public String getUserName() {
 		return userName;
@@ -63,6 +69,30 @@ public class UserPo {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 	
 

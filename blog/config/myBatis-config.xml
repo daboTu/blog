@@ -5,5 +5,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
 	<mappers>
 		<mapper resource="com/jp/login/po/userPo.xml"/>
+		<mapper resource="com/jp/notice/po/noticePo.xml"/>
+		<mapper resource="com/jp/link/po/linkPo.xml"/>
+		<mapper resource="com/jp/mood/po/moodPo.xml"/>
 	</mappers>
 </configuration>

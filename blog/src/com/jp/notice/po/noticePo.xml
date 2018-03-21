@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jp.notice.mapper.NoticeMapper">
+	<resultMap type="com.jp.notice.po.NoticePo" id="noticePo">
+		<id column="notice_id" property="notice_id"/>
+		<result column="title" property="title"/>
+		<result column="content" property="content"/>
+		<result column="createTime" property="createTime"/>
+		<result column="updateTime" property="updateTime"/>
+		<result column="isShow" property="isShow"/>
+	</resultMap>
+	
+	<insert id="addNoticePo">
+		insert into blog_notice (notice_id,title,content,createTime,updateTime,isShow) values(#{notice_id},#{title},#{content},#{createTime},#{updateTime},#{isShow})
+	</insert>
+	
+	<delete id="deleteNoticeById">
+		delete from blog_notice where notice_id=#{notice_id} 
+	</delete>
+	
+	<select id="getNoticeList" resultMap="noticePo">
+		select t1.notice_id,t1.title,t1.content,t1.createTime,t1.updateTime,t1.isShow from  blog_notice t1  where 1=1
+		<if test="title!=null">
+			and t1.title like CONCAT('%',#{title},'%')
+		</if>
+		<if test="content!=null">
+			and t1.content like CONCAT ('%',#{content},'%')
+		</if>
+		order by t1.updateTime desc 
+		<if test="begin!=null and pageSize!=null">
+			limit #{begin},#{size}
+		</if>
+	</select>
+	
+		
+	<update id="updateNoticePoById">
+		update blog_notice set title=#{title},content=#{content},updateTime=#{updateTime},isShow=#{isShow} where notice_id=#{notice_id}
+	</update>
+	
+	<select id="getCount" resultType="java.lang.Integer">
+		select COUNT(tem.notice_id) from (select t1.notice_id,t1.title,t1.content,t1.createTime,t1.updateTime,t1.isShow from  blog_notice t1  where 1=1
+		<if test="title!=null">
+			and t1.title like CONCAT('%',#{title},'%')
+		</if>
+		<if test="content!=null">
+			and t1.content like CONCAT ('%',#{content},'%')
+		</if>
+		order by t1.updateTime desc 
+		) tem
+	</select>
+
+</mapper>

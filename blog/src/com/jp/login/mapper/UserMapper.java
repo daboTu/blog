@@ -22,5 +22,7 @@ import com.jp.login.po.UserPo;
 public interface UserMapper {
 	
 	public int addUser(UserPo po);
+	
+	public UserPo getUserByUserNameAndPwd(UserPo po);
 
 }

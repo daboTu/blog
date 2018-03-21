@@ -5,5 +5,7 @@ import com.jp.login.po.UserPo;
 public interface UserBiz {
 	
 	public int addUser(UserPo po);
+	
+	public UserPo getUserPoByUserNameAndPwd(UserPo po);
 
 }

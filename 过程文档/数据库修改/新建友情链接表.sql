@@ -1,0 +1,1 @@
+create table blog_link(link_id varchar(50) primary key,linkName varchar(60),linkUrl varchar(500));

@@ -20,5 +20,9 @@ public class UserBizImpl implements UserBiz{
 		}
 		return userMapper.addUser(po);
 	}
+	
+	public UserPo getUserPoByUserNameAndPwd(UserPo po){
+		return userMapper.getUserByUserNameAndPwd(po);
+	}
 
 }

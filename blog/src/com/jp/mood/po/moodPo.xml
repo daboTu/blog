@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jp.mood.mapper.MoodMapper">
+	<resultMap type="com.jp.mood.po.MoodPo" id="moodPo">
+		<id column="mood_id" property="mood_id"/>
+		<result column="createTime" property="createTime"/>
+		<result column="content" property="content"/>
+	</resultMap>
+	
+	<insert id="addMoodPo">
+		insert into blog_mood (mood_id,createTime,content) values(#{mood_id},#{createTime},#{content})
+	</insert>
+	
+	<delete id="deleteMoodById">
+		delete from blog_mood where mood_id=#{mood_id}
+	</delete>
+	
+	<update id="updateMoodById">
+		update blog_mood set content=#{content} where mood_id=#{mood_id}
+	</update>
+	
+	<select id="getList" resultType="com.jp.mood.po.MoodPo">
+		select t1.mood_id ,t1.createTime ,t1.content from blog_mood t1 where mood_id in (select temp.mood_id from (select t2.mood_id from blog_mood t2 order by t2.createTime desc 
+		<if test="pageSize!=null and pageNum!=null">
+			limit #{begin},#{size}
+		</if>
+		) temp )
+	</select>
+	
+	<select id="getCount" resultType="java.lang.Integer">
+		select count(*) from ( select t1.mood_id ,t1.createTime ,t1.content from blog_mood t1 where mood_id in (select temp.mood_id from (select t2.mood_id from blog_mood t2 order by t2.createTime desc 
+		<if test="pageSize!=null and pageNum!=null">
+			limit #{begin},#{size}
+		</if>
+		) temp ) )temp1
+	</select>
+
+</mapper>

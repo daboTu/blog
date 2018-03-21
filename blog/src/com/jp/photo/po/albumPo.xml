@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jp.photo.mapper.AlbumMapper">
+	<resultMap type="com.jp.photo.po.AlbumPo" id="albumPo">
+		<id column="album_id" property="album_id"/>
+		<result column="albumName" property="albumName"/>
+		<result column="summary" property="summary"/>
+		<result column="createTime" property="createTime"/>
+		<result column="isShow" property="isShow"/>
+		<result column="question" property="question"/>
+		<result column="answer" property="answer"/>
+	</resultMap>
+
+</mapper>
