@@ -24,6 +24,20 @@ export default {
       mood: "",
       pubopen:false
     };
+  },
+  creared(){},
+  methods:{
+      commit(){
+          this.$ajax({
+              url:'/addMoodPo.do',
+              method:'post',
+              data:{
+                content:this.mood
+              } 
+         }).then(r=>{
+             console.log(r)
+         })
+      }
   }
 };
 </script>

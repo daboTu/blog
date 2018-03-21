@@ -1,16 +1,15 @@
 <template>
   <div class="mood">
       <h1>管理你的心情</h1>
-      <div class="moodBox" v-for='inx in 15'>
+      <div class="moodBox" v-for='(val , inx ) in cont'>
           <div class="content">
             <div class="time">
-              <p class="text-left"><Icon type="clock"></Icon> 2018-03-09 </p>
-              <p><span class="del">删除</span>&nbsp;&nbsp; <span>编辑</span>&nbsp;&nbsp; <Checkbox :checked.sync="pubopen">不公开</Checkbox> </p> 
+              <p class="text-left"><Icon type="clock"></Icon>{{val.createTime}}</p>
+              <p><span class="del" @click="del(val.mood_id)">删除</span>&nbsp;&nbsp; <span  @click="upda(val.mood_id),isShow=val.mood_id">编辑</span>&nbsp;&nbsp; <Checkbox :checked.sync="pubopen">不公开</Checkbox> </p> 
             </div>
             <p class="cont">
-                时光如水，流淌而过。转眼间邻居家看着我长大的姐姐要举行婚礼了，回首那些年无忧无虑的时光，曾记否，那个下午我不小心在你家睡着了
-                ，醒来后你说看我睡得香，不忍叫醒我，于是便由着我在你榻上睡去，一睡就是一个下午；还有那些快乐的周末，我们偷偷去山上摘果......
-                那时候的我，总以为长大是一件非常遥远的事情，怎料到，这一转眼，你已为人妻。
+                <Input v-show="isShow==val.mood_id" v-model="mood" type="textarea" :rows="4" placeholder="心是任何想法都能产生的源泉..."/>
+                {{val.content}}
             </p>
           </div>
       </div>
@@ -20,11 +19,51 @@
 export default {
   data() {
     return {
-      pubopen:false
+      pubopen: false,
+      cont: [],
+      mood:'',//内容
+      isShow:"",
     };
   },
-  created() {},
-  methods: {}
+  created() {
+    this.$ajax({
+      url: "/getMoodList.do",
+      method: "post",
+      data: {
+        pageNum: 1,
+        pageSize: 10
+      }
+    }).then(r => {
+      this.cont = r;
+      console.log(r);
+    });
+  },
+  methods: {
+    del(id) {
+      this.$ajax({
+        url: "/deleteMoodById.do",
+        method: "post",
+        data: {
+          mood_id: id
+        }
+      }).then(r => {
+        console.log(r);
+      });
+    },
+    upda(id) {
+      this.$ajax({
+        url: "/updateMoodById.do",
+        method: "post",
+        data: {
+          mood_id: id,
+          content:this.mood
+        }
+      }).then(r => {
+        console.log(r);
+        this.isShow=""
+      });
+    }
+  }
 };
 </script>
 

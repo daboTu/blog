@@ -33,7 +33,7 @@
             </DropdownMenu>
           </Dropdown>
        </li>
-       <li class="a" :class="{b:ind==4}" @click="ind=4"><router-link to="/album" class='link'>相册</router-link></li>
+       <li class="a" :class="{b:ind==4}" @click="ind=4"><router-link to="/albumAdmin" class='link'>相册</router-link></li>
        <li class="a" :class="{b:ind==5}" @click="ind=5"><router-link to="/aboutBlog" class='link'> 关于博主</router-link></li>
        <li class="a" :class="{b:ind==6}" @click="ind=6"><router-link to="/notice" class='link'>公告</router-link></li>
        <li class="a" :class="{b:ind==7}" @click="ind=7"><router-link to="/motto"  class='link'>座右铭</router-link></li>
