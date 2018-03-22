@@ -1,0 +1,1 @@
+create table blog_photo (photo_id varchar(50) primary key,path varchar(200),album_id varchar(50),createTime varchar(50));
