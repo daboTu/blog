@@ -46,7 +46,21 @@ export default {
       modal1: false
     };
   },
+  created(){
+    this.getal()
+  },
   methods: {
+    getal() {
+      this.$ajax({
+        url: "/getAlbumPoById.do",
+        method: "post",
+        data: {
+          album_id:id,
+        }
+      }).then(r=>{
+        console.log(r)
+      })
+    },
     upimg(e) {
       const list = this.$refs.img.files;
       const itme = {

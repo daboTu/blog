@@ -35,7 +35,8 @@ export default {
       }).then(r => {
         console.log(r)
       });
-    }
+    },
+    
   }
 };
 </script>
