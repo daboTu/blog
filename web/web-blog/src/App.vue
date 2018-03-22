@@ -6,8 +6,8 @@
   </div>
 </template>
 
-<script>
-import {mapState} from "vuex"
+<script>import {mapState} from "vuex"
+
 export default {
   data(){
     return{
@@ -19,6 +19,12 @@ export default {
   },
   computed:{
     ...mapState(['userinfo'])
+  },
+  watch:{
+    "$route":function(to , from){
+
+        console.log('走了！')
+    }
   }
 }
 </script>

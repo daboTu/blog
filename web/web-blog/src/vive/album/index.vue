@@ -2,7 +2,7 @@
   <div>
       <div class="box">
           <div class="l">
-        <h1>上传图片</h1>
+        <h1>上传图片 <span> &nbsp;&nbsp;&nbsp;&nbsp;<Checkbox :checked.sync="pubopen">不公开</Checkbox></span></h1>
         <div class="upBox">
             <div class="img">
                <input type="file" name="file" ref="img" class="element" accept='image/*' @change="upimg($event)">
@@ -23,7 +23,6 @@
                 <div>
                     <div class="img-cont" v-for="ind in 5" >
                         <p class="option">
-                            <Tooltip content="已公开" placement="top"><Icon type="eye-disabled" ></Icon>&nbsp;&nbsp;</Tooltip>
                             <Tooltip content="预览" placement="top"><span @click="aler"><Icon type="ios-eye"></Icon></span>&nbsp;&nbsp;</Tooltip>
                             <Tooltip content="删除" placement="top"><Icon type="ios-trash"></Icon></Tooltip>
                         </p>

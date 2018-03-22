@@ -19,7 +19,7 @@
                   <div class="titBox">
                       <span>分类：</span>
                       <Select v-model="constellation" style="width:300px">
-                        <Option  >item</Option>
+                        <Option>item</Option>
                       </Select>
                   </div>
               </div>

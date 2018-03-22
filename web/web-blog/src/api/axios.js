@@ -26,7 +26,7 @@ axios.interceptors.response.use(function (response) {
   }
   return Promise.reject(error)
 });
-// axios.defaults.baseURL = '/api/';
-axios.defaults.baseURL = 'http://176.122.131.235:8080/blog/'; //配置线上，请求URL
+axios.defaults.baseURL = '/api/';
+// axios.defaults.baseURL = 'http://176.122.131.235:8080/blog/'; //配置线上，请求URL
 
 export default axios;

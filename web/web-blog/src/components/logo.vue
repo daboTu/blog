@@ -5,7 +5,7 @@
         <Input v-model="user" placeholder="用户名" style="width: 300px" />
       </div>
       <div class="top">
-        <Input v-model="pwd" placeholder="登录密码" style="width: 300px" />        
+        <Input v-model="pwd" placeholder="登录密码" type="password" style="width: 300px" />        
       </div>
       <div class="top">
         <Button type="primary" size="large" @click="login">登录</Button> <span class="goRegister"><router-link to='/register'>没有账号？去注册...</router-link> </span> 
@@ -27,21 +27,34 @@ export default {
   methods: {
     ...mapMutations(["SET_USERINFO"]),
     login() {
-      this.$ajax({
-        url: "/login.do",
-        method: "post",
-        data: {
-          userName: this.user,
-          passWord: this.pwd
-        }
-      }).then(r => {
-        if (r.data.code == "0") {
-          this.SET_USERINFO({info:r.data})
-          this.$router.push({ path: "/study" });
-        } else if (r.data.code == "1") {
-          console.log(r.data.message);
-        }
-      });
+      if (this.Verification()) {
+        this.$ajax({
+          url: "/login.do",
+          method: "post",
+          data: {
+            userName: this.user,
+            passWord: this.pwd
+          }
+        }).then(r => {
+          if (r.data.code == "0") {
+            this.SET_USERINFO({ info: r.data });
+            this.$router.push({ path: "/study" });
+          } else if (r.data.code == "1") {
+            this.$Message.error(r.data.message);
+            console.log(r.data.message);
+          }
+        });
+      }
+    },
+    Verification() {
+      if (this.user == "" || this.user == null) {
+        this.$Message.warning("用户名没有写哦！");
+        return false;
+      } else if (this.pwd == "" || this.pwd == null) {
+        this.$Message.warning("密码没有写哦！");
+        return false;
+      }
+      return true;
     }
   }
 };

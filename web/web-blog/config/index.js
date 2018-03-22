@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://paoma.free.ngrok.cc/blog/',
+        target: 'http://176.122.131.235:8080/blog/',
         changeOrigin: true,
         pathRewrite: {
           '^/api': '/'

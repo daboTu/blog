@@ -33,12 +33,12 @@
             </DropdownMenu>
           </Dropdown>
        </li>
-       <li class="a" :class="{b:ind==4}" @click="ind=4"><router-link to="/albumAdmin" class='link'>相册</router-link></li>
-       <li class="a" :class="{b:ind==5}" @click="ind=5"><router-link to="/aboutBlog" class='link'> 关于博主</router-link></li>
-       <li class="a" :class="{b:ind==6}" @click="ind=6"><router-link to="/notice" class='link'>公告</router-link></li>
-       <li class="a" :class="{b:ind==7}" @click="ind=7"><router-link to="/motto"  class='link'>座右铭</router-link></li>
-       <li class="a" :class="{b:ind==8}" @click="ind=8"><router-link to="/link"  class='link'>友情链接</router-link></li>
-       <li class="a" :class="{b:ind==9}" @click="ind=9"><router-link to="/message"  class='link'>我的留言</router-link></li>       
+       <li class="a"><router-link to="/albumAdmin" class='link'><span class="c">相册</span></router-link></li>
+       <li class="a"><router-link to="/aboutBlog" class='link'> <span class="c">关于博主</span></router-link></li>
+       <li class="a"><router-link to="/notice" class='link'><span class="c">公告</span></router-link></li>
+       <!-- <li class="a"><router-link to="/motto"  class='link'><span class="c">座右铭</span></router-link></li> -->
+       <li class="a"><router-link to="/link"  class='link'><span class="c">友情链接</span></router-link></li>
+       <li class="a"><router-link to="/message"  class='link'><span class="c">我的留言</span></router-link></li>       
      </ul>   
     </div>
     <div class="info">
@@ -51,7 +51,7 @@
 export default {
   data() {
     return {
-      ind: 1
+      ind: 0
     };
   },
   created() {
@@ -94,6 +94,14 @@ export default {
 .link {
   color: #fff;
   display: block;
+  &.router-link-active{
+    .c{
+      width: 100%;
+      height: 100%;
+      display: block;
+      background-color: rgba(171, 38, 73, 0.5);;
+    }
+  }
 }
 .childLink {
   color: #4d4d4d;
@@ -117,6 +125,7 @@ li .list {
   width: 100%;
   /* background: rgba(171, 38, 73, 0.5); */
 }
+
 .b {
   background: rgba(171, 38, 73, 0.5);
 }
