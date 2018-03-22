@@ -11,5 +11,25 @@
 		<result column="question" property="question"/>
 		<result column="answer" property="answer"/>
 	</resultMap>
+	
+	<insert id="addAlbumPo">
+		insert into blog_album (album_id,albumName,summary,createTime,isShow,question,answer) values(#{album_id},#{albumName},#{summary},#{createTime},#{isShow},#{question},#{answer})
+	</insert>
+	
+	<delete id="deleteAlbumPoById">
+		delete from blog_album where album_id=#{album_id}
+	</delete>
+	
+	<select id="getAlbumPoList" resultType="com.jp.photo.po.AlbumPo">
+		select album_id,albumName,summary,createTime,isShow,question,answer from blog_album
+	</select>
+	
+	<update id="updateAlbumPoById">
+		update blog_album set albumName =#{albumName},summary=#{summary},isShow=#{isShow},question=#{question},answer=#{answer} where album_id=#{album_id}
+	</update>
+	
+	<select id="getAlbumPoById" resultType="com.jp.photo.po.AlbumPo">
+		select album_id,albumName,summary,createTime,isShow,question,answer from blog_album where album_id=#{album_id}
+	</select>
 
 </mapper>

@@ -8,5 +8,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/jp/notice/po/noticePo.xml"/>
 		<mapper resource="com/jp/link/po/linkPo.xml"/>
 		<mapper resource="com/jp/mood/po/moodPo.xml"/>
+		<mapper resource="com/jp/photo/po/albumPo.xml"/>
+		<mapper resource="com/jp/photo/po/photoPo.xml"/>
 	</mappers>
 </configuration>

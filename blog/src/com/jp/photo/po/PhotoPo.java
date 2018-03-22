@@ -1,4 +1,7 @@
 package com.jp.photo.po;
+
+import com.jp.commom.page.Page;
+
 /**
  * 
  * 版权所有：2018-zhuwei
@@ -13,7 +16,7 @@ package com.jp.photo.po;
  * 修改备注：   
  * @version   V1.0
  */
-public class PhotoPo {
+public class PhotoPo extends Page{
 
 	private String photo_id;//主键
 	
@@ -22,6 +25,14 @@ public class PhotoPo {
 	private String album_id;//相册主键
 	
 	private String createTime;//创建时间
+	
+	private String timePageNum;//这个是相片的时间分页页数
+	
+	private String timePageSize;//这个是相片的时间页面容量
+	
+	private int timeBegin;//这个是开始时间分页开始
+	
+	private int timeSize;//这个是时间分页结束
 
 
 	public String getPhoto_id() {
@@ -54,6 +65,50 @@ public class PhotoPo {
 
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
+	}
+
+	public String getTimePageNum() {
+		return timePageNum;
+	}
+
+	public void setTimePageNum(String timePageNum) {
+		this.timePageNum = timePageNum;
+	}
+
+	public String getTimePageSize() {
+		return timePageSize;
+	}
+
+	public void setTimePageSize(String timePageSize) {
+		this.timePageSize = timePageSize;
+	}
+
+	public int getTimeBegin() {
+		int result=0;
+		try{
+			result=(Integer.valueOf(this.timePageNum)-1)*Integer.valueOf(this.timePageSize);	
+		}catch (Exception e){
+			result=0;
+		}
+		return result;
+	}
+
+	public void setTimeBegin(int timeBegin) {
+		this.timeBegin=timeBegin;
+	}
+
+	public int getTimeSize() {
+		int result=0;
+		try{
+			result=Integer.valueOf(this.timePageSize);//这里一定要做异常处理，不然一定会报错
+		}catch(Exception e){
+			result=0;
+		}
+		return result;
+	}
+
+	public void setTimeSize(int timeSize) {
+		this.timeSize = timeSize;
 	}
 	
 	

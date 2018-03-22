@@ -32,6 +32,13 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
 				</list>
 		</property>
 	</bean>
+	<!-- 文件解释器 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">    
+	    <!-- 设置默认编码 -->  
+	    <property name="defaultEncoding" value="utf-8"></property>  
+	    <!-- 上传图片最大大小5M-->   
+	    <property name="maxUploadSize" value="5242440"></property>    
+	</bean> 
 
 
 </beans>
