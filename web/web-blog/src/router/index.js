@@ -112,7 +112,7 @@ export default [
           }
         },
         {
-          path:"/album",
+          path:"/album/:id",
           name:"album",
           component:album,
           meta:{

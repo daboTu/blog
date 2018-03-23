@@ -5,14 +5,14 @@
               相册  &nbsp;&nbsp;&nbsp;&nbsp;<span @click="modal1 =true" class="add"><Icon type="plus-round"></Icon> 添加相册</span> 
           </div>
           <div class="box">
-              <div class="album" v-for="inv in 10">
+              <div class="album" v-for="(val,inde) in cont">
                 <!-- <router-link to="/album"> -->
                   <div>
                     <div class="img"> 
-                      <span class="delIcon" @click="del()"><Icon type="trash-a"></Icon></span>
-                      <img src="../../assets/9k=.jpg" alt=""  @click="routAlbum(id)">
+                      <span class="tiem">{{val.createTime}}</span> <span class="delIcon" @click="del(val.album_id)"><Icon type="trash-a"></Icon></span>
+                      <img src="../../assets/workbench_fill.png" alt=""  @click="routAlbum(val.album_id)">
                     </div>
-                    <p class="name">这是相册的名称</p>
+                    <p class="name">{{val.albumName}}</p>
                   </div>
                 <!-- </router-link> -->
               </div>
@@ -20,8 +20,8 @@
       </div>
       <div class="mask" v-show="modal1" @click="modal1=false"></div>
       <div class="addBox" v-show="modal1">
-          <p class="name2">名称：<i-input :value.sync="name" placeholder="请输入相册名称" style="width: 300px"></i-input></p>
-          <p class="name2">简介：<i-input :value.sync="brief " placeholder="请输入相册简介" style="width: 300px"></i-input></p>
+          <p class="name2">名称：<i-input v-model="name" placeholder="请输入相册名称" style="width: 300px"></i-input></p>
+          <p class="name2">简介：<i-input v-model="brief " placeholder="请输入相册简介" style="width: 300px"></i-input></p>
           <p class="name2">
             <Radio-group v-model="look2">
                 <Radio label="y">
@@ -36,8 +36,8 @@
             </Radio-group>
           </p>
           <p class="name2" v-show='look2=="t"'>
-            问题：<i-input :value.sync="question " placeholder="请输入问题" style="width: 100px"></i-input>
-            答案：<i-input :value.sync="answer " placeholder="请输入问题答案" style="width: 100px"></i-input>
+            问题：<i-input v-model="question " placeholder="请输入问题" style="width: 100px"></i-input>
+            答案：<i-input v-model="answer " placeholder="请输入问题答案" style="width: 100px"></i-input>
           </p>
           <p style="text-align: center;margin-top:24px;">
             <Button type="ghost" @click="modal1=false">取消</Button>&nbsp;&nbsp;&nbsp;
@@ -58,7 +58,8 @@ export default {
       pubopen: false, //是否公开
       question: "", //问题
       answer: "", //答案
-      look2: "y" //可见程度
+      look2: "y", //可见程度
+      cont: [] //相册数据内容
     };
   },
   created() {
@@ -71,37 +72,58 @@ export default {
         method: "post",
         data: {}
       }).then(r => {
-        console.log(r);
+        this.cont = r.data;
+        console.log(this.cont);
       });
     },
     routAlbum(id) {
-      this.$router.push({ path: "/album" });
+      this.$router.push({ path: "/album/"+id });
     },
     okadd() {
+      let self = this;
       this.$ajax({
         url: "/addAlbumPo.do",
         method: "post",
         data: {
-          albumName: this.name,
-          summary: this.brief,
-          isShow: this.look2,
-          question: this.question,
-          answer: this.answer
+          albumName: self.name,
+          summary: self.brief,
+          isShow: self.look2,
+          question: self.question,
+          answer: self.answer
         }
       }).then(r => {
-        console.log(r);
+        if (r.data.code == "0") {
+          self.modal1 = false;
+          self.reset();
+          this.getAlbum();
+          this.$Message.info("添加成功！");
+        } else {
+          this.$Message.console.error("添加失败！");
+        }
       });
     },
     del(id) {
       this.$ajax({
-        url:"/deleteAlbumPoById.do",
-        method:'post',
-        data:{
-            album_id:id,
+        url: "/deleteAlbumPoById.do",
+        method: "post",
+        data: {
+          album_id: id
         }
-      }).then(r=>{
-        console.log(r)
-      })
+      }).then(r => {
+        if (r.data.code == "0") {
+          this.getAlbum();
+          this.$Message.info("删除成功！");
+        } else {
+          this.$Message.console.error("删除失败！");
+        }
+      });
+    },
+    reset() {
+      this.name = ""; //相册名称
+      this.brief = ""; //简介
+      this.question = ""; //问题
+      this.answer = ""; //答案
+      this.look2 = "y";
     }
   }
 };
@@ -189,5 +211,14 @@ export default {
   z-index: 3;
   text-align: center;
   line-height: 20px;
+}
+.tiem {
+  position: absolute;
+  top: 4px;
+  z-index: 3;
+  font-size: 12px;
+  color: #666;
+  line-height: 20px;
+  padding-left: 8px;
 }
 </style>

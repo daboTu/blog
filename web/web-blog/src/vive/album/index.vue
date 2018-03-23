@@ -5,13 +5,13 @@
         <h1>上传图片 <span> &nbsp;&nbsp;&nbsp;&nbsp;<Checkbox :checked.sync="pubopen">不公开</Checkbox></span></h1>
         <div class="upBox">
             <div class="img">
-               <input type="file" name="file" ref="img" class="element" accept='image/*' @change="upimg($event)">
+               <input type="file" name="file" id="file" ref="img" class="element" accept='image/*' @change="upimg($event)">
                 <img :src="imgvalue" alt=""/>
             </div>
             <div class="text">
-                <span>文字内容说明:</span><i-input :value.sync="value" placeholder="文字内容说明..." style="width: 200px"></i-input>
+                <span>文字内容说明:</span><i-input v-model="value" placeholder="文字内容说明..." style="width: 200px"></i-input>
                 <span> <Checkbox :checked.sync="pubopen">不公开</Checkbox></span>
-                <span><i-button type="ghost">点我上传</i-button></span>
+                <span><i-button type="ghost" @click="up()">点我上传</i-button></span>
             </div>
         </div>
     </div>
@@ -43,11 +43,14 @@ export default {
       value: "",
       imgvalue: "",
       pubopen: false,
-      modal1: false
+      modal1: false,
+      id: "", //相册id
+      file33: ""
     };
   },
-  created(){
-    this.getal()
+  created() {
+    this.id = this.$route.params.id;
+    this.getal();
   },
   methods: {
     getal() {
@@ -55,14 +58,22 @@ export default {
         url: "/getAlbumPoById.do",
         method: "post",
         data: {
-          album_id:id,
+          album_id: this.id
         }
-      }).then(r=>{
-        console.log(r)
-      })
+      }).then(r => {
+        console.log(r);
+      });
     },
     upimg(e) {
+      var formData = new FormData();
+      formData.append("file", e.target.files[0]);
+      formData.append("type", "test");
+
+      console.log(formData);
+
       const list = this.$refs.img.files;
+      this.file33 = formData;
+
       const itme = {
         name: list[0].name,
         size: list[0].size,
@@ -78,11 +89,17 @@ export default {
       };
       reader.readAsDataURL(file);
     },
-    ok() {
-      this.$Message.info("点击了确定");
-    },
-    cancel() {
-      this.$Message.info("点击了取消");
+    up() {
+      this.$ajax({
+        url: "/addPhotoPo.do",
+        method: "post",
+        data: {
+          file: this.file33,
+          album_id: this.id
+        }
+      }).then(r => {
+        console.log(r);
+      });
     },
     aler() {
       this.modal1 = true;
