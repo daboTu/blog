@@ -26,7 +26,7 @@ public class PhotoBizImpl implements PhotoBiz{
 	public int deletePhotoPoById(PhotoPo po){
 		//首先要删除文件
 		po=mapper.getPhotoPoById(po);
-		deletePhotoByPath(po.getPath());
+		deletePhotoByPath(po.getRealPath());
 		return mapper.deletePhotoPoById(po);
 	}
 	

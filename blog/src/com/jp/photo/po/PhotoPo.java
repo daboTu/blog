@@ -33,6 +33,8 @@ public class PhotoPo extends Page{
 	private int timeBegin;//这个是开始时间分页开始
 	
 	private int timeSize;//这个是时间分页结束
+	
+	private String realPath;//这个是真实地址，删除图片用
 
 
 	public String getPhoto_id() {
@@ -109,6 +111,14 @@ public class PhotoPo extends Page{
 
 	public void setTimeSize(int timeSize) {
 		this.timeSize = timeSize;
+	}
+
+	public String getRealPath() {
+		return realPath;
+	}
+
+	public void setRealPath(String realPath) {
+		this.realPath = realPath;
 	}
 	
 	
