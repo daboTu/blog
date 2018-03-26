@@ -1,0 +1,1 @@
+alter table blog_photo add column realPath varchar(50);
